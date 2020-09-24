@@ -10,11 +10,11 @@ import java.time.temporal.ChronoUnit;
 @RestController
 @RequiredArgsConstructor
 public class WeatherControllerV3 {
-    private WeatherRepository weatherRepository;
+    private final WeatherRepository weatherRepository;
 
     @GetMapping("V3/now")
     public String getCurrent() {
-        Weather weather = weatherRepository.findByTime(LocalDateTime.now().truncatedTo(ChronoUnit.HOURS));
+        Weather weather = weatherRepository.findByTime(LocalDateTime.now().truncatedTo(ChronoUnit.HOURS).plusHours(1));
         return formatToResponse(weather);
     }
 
@@ -22,5 +22,4 @@ public class WeatherControllerV3 {
         return String.format("Temperature: %s C, Wind speed: %s m/s, Rain: %s",
                 weather.getTemperature(), weather.getWind(), weather.getRain());
     }
-
 }

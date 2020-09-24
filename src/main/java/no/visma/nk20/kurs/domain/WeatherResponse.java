@@ -32,6 +32,8 @@ public class WeatherResponse {
             @Data
             public static class WeatherData {
                 Instant instant;
+                @JsonAlias("next_1_hours")
+                NextHour nextHour;
 
                 @Data
                 public static class Instant {
@@ -45,6 +47,17 @@ public class WeatherResponse {
                         Double cloudAreaFraction;
                         @JsonAlias("wind_speed")
                         Double windSpeed;
+                    }
+                }
+
+                @Data
+                public class NextHour {
+                    Details details;
+
+                    @Data
+                    public class Details {
+                        @JsonAlias("precipitation_amount")
+                        Double regn;
                     }
                 }
             }
