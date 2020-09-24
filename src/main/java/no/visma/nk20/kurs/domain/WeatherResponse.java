@@ -14,31 +14,31 @@ public class WeatherResponse {
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class Properties {
+    public static class Properties {
         Meta meta;
         List<TimeSerie> timeseries;
 
         @Data
-        private static class Meta {
+        public static class Meta {
             @JsonAlias("updated_at")
             LocalDateTime updatedAt;
         }
 
         @Data
-        private static class TimeSerie {
+        public static class TimeSerie {
             LocalDateTime time;
             WeatherData data;
 
             @Data
-            private static class WeatherData {
+            public static class WeatherData {
                 Instant instant;
 
                 @Data
-                private static class Instant {
+                public static class Instant {
                     Details details;
 
                     @Data
-                    private static class Details {
+                    public static class Details {
                         @JsonAlias("air_temperature")
                         Double airTemperature;
                         @JsonAlias("cloud_area_fraction")
